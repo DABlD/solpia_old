@@ -40,5 +40,16 @@ Route::group([
 			->defaults('roles', array('Admin'))
 			->name('dashboard')
 			->defaults('href', 'dashboard');
+
+		Route::group(['namespace' => "Admin"], function(){
+
+			Route::get('applications', 'ApplicationsController@index')
+				->defaults('sidebar', 1)
+				->defaults('icon', 'fa-file-text')
+				->defaults('name', 'Applications')
+				->defaults('roles', array('Admin'))
+				->name('applications')
+				->defaults('href', 'applications');
+		});
 	}
 );
