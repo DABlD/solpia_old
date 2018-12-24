@@ -17,12 +17,13 @@
             </div>
           </div>
 
-          <form>
+          <form method="post" action="{{ route('applications.store') }}" id="applicationForm">
+            @csrf
             <div class="box-body">
               <ul class="nav nav-tabs">
-                <li class="no-pointer active"><a data-toggle="tab" href="#step1">Step 1</a></li>
-                <li class="no-pointer"><a data-toggle="tab" href="#step2">Step 2</a></li>
-                <li class="no-pointer"><a data-toggle="tab" href="#step3">Step 3</a></li>
+                <li class='no-pointer active' data-step="1"><a data-toggle="tab" href="#step1">Step 1</a></li>
+                <li class='no-pointer' data-step="2"><a data-toggle="tab" href="#step2">Step 2</a></li>
+                <li class='no-pointer' data-step="3"><a data-toggle="tab" href="#step3">Step 3</a></li>
               </ul>
 
               <div class="tab-content">
@@ -31,18 +32,14 @@
                   @include('admin.applications.forms.personal_info')
                 </div>
                 <div id="step2" class="tab-pane fade">
-                  <h3>Menu 1</h3>
-                  <p>Some content in menu 1.</p>
+                  <h3>Documents</h3>
+                  @include('admin.applications.forms.documents')
                 </div>
                 <div id="step3" class="tab-pane fade">
-                  <h3>Menu 2</h3>
-                  <p>Some content in menu 2.</p>
+                  <h3>Experiences</h3>
+                  @include('admin.applications.forms.experiences')
                 </div>
               </div>
-            </div>
-            <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                <i class="fa fa-arrow-circle-right"></i></button>
             </div>
           </form>
 
@@ -54,6 +51,8 @@
 @endsection
 
 @push('after-styles')
+  <link rel="stylesheet" href="{{ asset('css/flatpickr.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
   <style>
     .no-pointer{
       pointer-events: none;
@@ -66,6 +65,33 @@
   </style>
 @endpush
 
-@push('after-scripts')
+@push('before-scripts')
   <script src="{{ asset('js/flatpickr.js') }}"></script>
+  <script src="{{ asset('js/numeral.js') }}"></script>
+  <script src="{{ asset('js/moment.js') }}"></script>
+  <script src="{{ asset('js/select2.min.js') }}"></script>
+
+  <script>
+    $('.next').on('click', () => {
+      let activeTab = $('.no-pointer.active');
+      activeTab.toggleClass('active');
+      $('[data-step=' + (activeTab.data('step') + 1) + '] a').click();
+    });
+
+    $('.prev').on('click', () => {
+      let activeTab = $('.no-pointer.active');
+      activeTab.toggleClass('active');
+      $('[data-step=' + (activeTab.data('step') - 1) + '] a').click();
+    });
+
+    $('[data-step=3] a').on('click', () => {
+      if(!$('[name="with_experience"]').is(':checked')){
+      
+      }
+    })
+
+    $('.submit').on('click', () => {
+      $('#applicationForm').submit();
+    });
+  </script>
 @endpush

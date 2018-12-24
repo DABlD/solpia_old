@@ -48,10 +48,11 @@ Route::group([
 				->defaults('icon', 'fa-file-text')
 				->defaults('name', 'Applications')
 				->defaults('roles', array('Admin'))
-				->name('applications')
+				->name('applications.index')
 				->defaults('href', 'applications');
 
 			Route::get('applications/create', 'ApplicationsController@create')->name('applications.create');
+			Route::post('applications/store', 'ApplicationsController@store')->name('applications.store');
 		});
 	}
 );

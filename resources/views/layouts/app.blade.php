@@ -33,7 +33,7 @@
         <li class="active">{{ $title }}</li>
       </ol>
     </section>
-    
+
     @yield('content')
   </div>
 
@@ -48,13 +48,36 @@
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/adminlte.min.js') }}"></script>
+  <script src="{{ asset('js/swal.js') }}"></script>
 
   <script>
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+
+    @if ($errors->any())
+      swal({
+        type: 'error',
+        html: 
+          @foreach ($errors->all() as $error)
+              "{!! $error !!}<br/>"
+          @endforeach
+      });
+    @elseif (session('success'))
+      swal({
+        type: 'success',
+        title: '{{ session('success') }}',
+      });
+    @elseif (session('error'))
+      swal({
+        type: 'error',
+        title: '{{ session('error') }}',
+      });
+    @endif
+
   </script>
 
+  @stack('before-scripts')
   @stack('after-scripts')
 </body>
 </html>
