@@ -50,6 +50,8 @@ Route::group([
 				->defaults('roles', array('Admin'))
 				->name('applications')
 				->defaults('href', 'applications');
+
+			Route::get('applications/create', 'ApplicationsController@create')->name('applications.create');
 		});
 	}
 );

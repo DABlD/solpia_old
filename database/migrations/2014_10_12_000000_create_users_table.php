@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('fname');
             $table->string('mname')->nullable();
             $table->string('lname');
-            $table->string('role')->nullable();
+            $table->string('role')->default('Applicant');
             $table->string('email')->unique();
 
             $table->date('birthday');
@@ -29,7 +29,6 @@ class CreateUsersTable extends Migration
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('applicant')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

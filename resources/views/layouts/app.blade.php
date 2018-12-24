@@ -49,6 +49,12 @@
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
   @stack('after-scripts')
 </body>
 </html>
