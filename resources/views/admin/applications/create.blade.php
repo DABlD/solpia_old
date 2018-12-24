@@ -7,8 +7,6 @@
       <section class="col-lg-12">
         <div class="box box-info">
           <div class="box-header">
-            <i class="fa fa-envelope"></i>
-            <h3 class="box-title">Quick Email</h3>
 
             <div class="pull-right">
               <a class="btn btn-success" data-toggle="tooltip" title="Add Application" data-placement="left">

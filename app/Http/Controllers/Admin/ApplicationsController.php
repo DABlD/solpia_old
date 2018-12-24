@@ -12,7 +12,8 @@ class ApplicationsController extends Controller
 {
     public function index(){
     	return $this->_view('index', [
-    		'title' => 'Applications'
+    		'title' => 'Applications',
+            'applications' => User::where('role', 'Applicant')->get()
     	]);
     }
 
